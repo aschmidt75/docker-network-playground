@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
 	s.vm.provision "shell", path: 'provision.d/01_packages.shprov'
 	s.vm.provision "shell", path: 'provision.d/10_docker.shprov'
 	s.vm.provision "shell", path: 'provision.d/15_docker_prepare_image.shprov'
+	s.vm.provision "shell", path: 'provision.d/20_pipework.shprov'
 
   end
   
@@ -36,6 +37,7 @@ Vagrant.configure("2") do |config|
 	s.vm.provision "shell", path: 'provision.d/01_packages.shprov'
 	s.vm.provision "shell", path: 'provision.d/10_docker.shprov'
 	s.vm.provision "shell", path: 'provision.d/15_docker_prepare_image.shprov'
+	s.vm.provision "shell", path: 'provision.d/20_pipework.shprov'
 
   end
   

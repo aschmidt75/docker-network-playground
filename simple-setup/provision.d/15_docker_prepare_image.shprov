@@ -6,4 +6,4 @@ if [[ $? -ne 0 ]]; then
  	cd /srv/ssh_service
 	docker build -t test/1 .
 fi
-docker images test
+docker images test/1

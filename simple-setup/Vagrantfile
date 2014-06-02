@@ -1,0 +1,42 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "trusty64"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+
+  config.vm.define "docker-test1", primary: true do |s|
+	s.vm.network "private_network", ip: "192.168.77.5"
+   	s.vm.provider "virtualbox" do |vb|
+		vb.customize [ 'modifyvm', :id, '--nicpromisc1', 'allow-all']
+        	vb.gui = false
+        	vb.customize [ "modifyvm", :id, "--memory", "512"]
+        	vb.customize [ "modifyvm", :id, "--cpus", "1"]
+     	end
+
+	s.vm.synced_folder "data.d/", "/srv"
+
+	s.vm.provision "shell", path: 'provision.d/01_packages.shprov'
+	s.vm.provision "shell", path: 'provision.d/10_docker.shprov'
+	s.vm.provision "shell", path: 'provision.d/15_docker_prepare_image.shprov'
+
+  end
+  
+  config.vm.define "docker-test2", primary: true do |s|
+	s.vm.network "private_network", ip: "192.168.77.6"
+   	s.vm.provider "virtualbox" do |vb|
+		vb.customize [ 'modifyvm', :id, '--nicpromisc1', 'allow-all']
+        	vb.gui = false
+        	vb.customize [ "modifyvm", :id, "--memory", "512"]
+        	vb.customize [ "modifyvm", :id, "--cpus", "1"]
+     	end
+
+	s.vm.synced_folder "data.d/", "/srv"
+
+	s.vm.provision "shell", path: 'provision.d/01_packages.shprov'
+	s.vm.provision "shell", path: 'provision.d/10_docker.shprov'
+	s.vm.provision "shell", path: 'provision.d/15_docker_prepare_image.shprov'
+
+  end
+  
+end

@@ -1,4 +1,0 @@
-echo == Fetching pipework
-cd /usr/share
-git clone https://github.com/jpetazzo/pipework
-ln -s /usr/share/pipework/pipework /usr/local/bin/pipework

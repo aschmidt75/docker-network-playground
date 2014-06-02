@@ -1,1 +1,0 @@
-{"virtualbox":{"/srv":{"guestpath":"/srv","hostpath":"/Users/cassini/ovm_temp/projects/docker-network-playground/simple-setup/data.d"},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/cassini/ovm_temp/projects/docker-network-playground/simple-setup"}}}

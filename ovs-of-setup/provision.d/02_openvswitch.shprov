@@ -1,0 +1,5 @@
+echo == Installing open vSwitch
+
+sudo apt-get -y install bridge-utils arping
+sudo apt-get -y install openvswitch-common python-openvswitch openvswitch-controller openvswitch-dbg openvswitch-switch openvswitch-test
+

@@ -8,7 +8,9 @@ fi
 # kill old containers
 
 MY_CONTS=$(docker ps | grep "test\/1" | awk '{ print $1 }')
-docker stop $MY_CONTS
+if [[ ! -z $MY_CONTS ]]; then
+	docker stop $MY_CONTS
+fi
 
 # set up bridges
 

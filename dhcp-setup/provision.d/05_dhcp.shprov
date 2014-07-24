@@ -1,0 +1,10 @@
+echo == Installing dhcp
+
+sudo apt-get -y install udhcpc udhcpd
+
+service udhcpd stop
+
+# configure
+#
+sudo sed -i 's/DHCPD_ENABLED="no"/DHCPD_ENABLED="yes"/' /etc/default/udhcpd
+

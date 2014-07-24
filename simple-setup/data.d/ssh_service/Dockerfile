@@ -1,3 +1,5 @@
+# https://docs.docker.com/examples/running_ssh_service/
+
 FROM     ubuntu:latest
 MAINTAINER Thatcher R. Peskens "thatcher@dotcloud.com"
 

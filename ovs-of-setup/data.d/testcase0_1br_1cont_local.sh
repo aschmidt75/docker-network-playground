@@ -9,13 +9,15 @@
 # - one busybox container
 # wiring
 # - pipeworking one subnet into container eth1
-# - add a tap interface on bridge
+# - add an internal interface on bridge
 #
 
 # Remove Bridge(s), add new
 ovs-vsctl del-br br0
 ovs-vsctl del-br br1
 ovs-vsctl add-br br0
+ip link delete dev port0
+
 
 # Kill all running containers
 docker kill $(docker ps -q -a) >/dev/null
@@ -26,8 +28,11 @@ C1=$(docker run -t -d -i busybox /bin/sh)
 # inject networking
 pipework br0 $C1 192.168.88.10/24
 
-# add ip to bridge
-ifconfig br0 192.168.88.50/24
+# add an internal intf to bridge, add ip
+ovs-vsctl add-port br0 port0
+ovs-vsctl set Interface port0 type=internal
+ip link set dev port0 up
+ip addr add 192.168.88.50/24 dev port0
 
 # show
 docker ps
@@ -35,6 +40,7 @@ ovs-vsctl list-br br0
 ovs-vsctl list-ports br0
 
 ip a s br0
+ip a s port0
 
 C1=$(echo $C1 | cut -b 1-4)
 

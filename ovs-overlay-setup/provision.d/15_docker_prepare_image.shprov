@@ -1,0 +1,9 @@
+# if not yet built, do it now.
+docker images test/1 | grep -q "test/1"
+if [[ $? -ne 0 ]]; then
+	echo = Building test image
+
+ 	cd /srv/ssh_service
+	docker build -t test/1 .
+fi
+docker images test/1
